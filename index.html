@@ -289,34 +289,55 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:24px
             </div>
           </div>
 
+          <div class="f">
+            <label>평형 <span class="r">*</span></label>
+            <div class="chips">
+              <input type="radio" name="평형" id="py1" value="51형" required>
+              <label for="py1">51형</label>
+              <input type="radio" name="평형" id="py2" value="59형">
+              <label for="py2">59형</label>
+              <input type="radio" name="평형" id="py3" value="기타">
+              <label for="py3">기타</label>
+            </div>
+          </div>
+
           <div class="g2">
             <div class="f">
-              <label>평형 <span class="r">*</span></label>
-              <select name="평형" required>
-                <option value="">선택</option>
-                <option value="51형">51형</option>
-                <option value="59형">59형</option>
-                <option value="기타">기타</option>
-              </select>
+              <label>성함 <span class="r">*</span></label>
+              <input type="text" name="성함" placeholder="홍길동" required>
             </div>
             <div class="f">
-              <label>층수 <span class="s">(선택)</span></label>
-              <input type="text" name="층수" placeholder="예) 15층">
+              <label>연락처 <span class="r">*</span></label>
+              <input type="tel" name="연락처" placeholder="010-0000-0000" required>
+            </div>
+          </div>
+
+          <div class="f">
+            <label>상담 가능 시간</label>
+            <div class="chips">
+              <input type="radio" name="상담시간" id="t1" value="오전 9~12시">
+              <label for="t1">오전 9~12시</label>
+              <input type="radio" name="상담시간" id="t2" value="오후 12~18시">
+              <label for="t2">오후 12~18시</label>
+              <input type="radio" name="상담시간" id="t3" value="저녁 18시~">
+              <label for="t3">저녁 18시~</label>
+              <input type="radio" name="상담시간" id="t4" value="언제든 가능" checked>
+              <label for="t4">언제든 가능</label>
             </div>
           </div>
 
           <div class="sec">📋 상담 목적</div>
 
           <div class="f">
-            <label>상담 유형 <span class="r">*</span></label>
+            <label>상담 유형 <span class="s">(중복 선택 가능)</span></label>
             <div class="chips">
-              <input type="radio" name="상담유형" id="c1" value="매도 희망" required>
+              <input type="checkbox" name="상담유형" id="c1" value="매도 희망">
               <label for="c1">🏠 매도 희망</label>
-              <input type="radio" name="상담유형" id="c2" value="매수 문의">
+              <input type="checkbox" name="상담유형" id="c2" value="매수 문의">
               <label for="c2">🔑 매수 문의</label>
-              <input type="radio" name="상담유형" id="c3" value="시세 확인">
+              <input type="checkbox" name="상담유형" id="c3" value="시세 확인">
               <label for="c3">📊 시세 확인</label>
-              <input type="radio" name="상담유형" id="c4" value="분양전환 절차 상담">
+              <input type="checkbox" name="상담유형" id="c4" value="분양전환 절차 상담">
               <label for="c4">📋 절차 상담</label>
             </div>
           </div>
@@ -355,41 +376,16 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:24px
           </div>
 
           <div class="f">
-            <label>브릿지론 상담 희망 여부</label>
-            <div class="chips">
-              <input type="radio" name="브릿지론" id="b1" value="희망">
-              <label for="b1">🏦 상담 희망</label>
-              <input type="radio" name="브릿지론" id="b2" value="해당없음" checked>
-              <label for="b2">해당없음</label>
+            <label class="priv" style="margin:0 0 10px;">
+              <input type="checkbox" name="브릿지론" id="b1" value="상담 희망">
+              <p style="font-size:13px;"><strong>브릿지론 상담을 희망합니다</strong></p>
+            </label>
+            <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--radius);padding:11px 14px;font-size:12.5px;color:#92400e;line-height:1.7;">
+              <b style="font-size:13px;">★ 매매 전속계약 체결 시 브릿지론 연계 가능</b>
             </div>
           </div>
 
-          
 
-          <div class="g2">
-            <div class="f">
-              <label>성함 <span class="r">*</span></label>
-              <input type="text" name="성함" placeholder="홍길동" required>
-            </div>
-            <div class="f">
-              <label>연락처 <span class="r">*</span></label>
-              <input type="tel" name="연락처" placeholder="010-0000-0000" required>
-            </div>
-          </div>
-
-          <div class="f">
-            <label>상담 가능 시간</label>
-            <div class="chips">
-              <input type="radio" name="상담시간" id="t1" value="오전 9~12시">
-              <label for="t1">오전 9~12시</label>
-              <input type="radio" name="상담시간" id="t2" value="오후 12~18시">
-              <label for="t2">오후 12~18시</label>
-              <input type="radio" name="상담시간" id="t3" value="저녁 18시~">
-              <label for="t3">저녁 18시~</label>
-              <input type="radio" name="상담시간" id="t4" value="언제든 가능" checked>
-              <label for="t4">언제든 가능</label>
-            </div>
-          </div>
 
           <div class="f">
             <label>메모 <span class="s">(선택)</span></label>
@@ -499,7 +495,7 @@ function toggleChat(){
 }
 
 // ── Form submit ──
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxu4gyznAwdtk4zZ2SQcyviAFmEGNub4p7u0FsSYoSRcJyy7i_S0Yj2nO4FoOTXYo865g/exec';
+const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
 
 document.getElementById('mf').addEventListener('submit', async function(e){
   e.preventDefault();
@@ -510,8 +506,12 @@ document.getElementById('mf').addEventListener('submit', async function(e){
   sb.innerHTML = '<div class="spin"></div> 접수 중...';
 
   const data = {};
-  new FormData(this).forEach((v,k) => data[k]=v);
+  const checkedTypes = [];
+  document.querySelectorAll('input[name="상담유형"]:checked').forEach(el => checkedTypes.push(el.value));
+  data['상담유형'] = checkedTypes.join(', ') || '미선택';
+  new FormData(this).forEach((v,k) => { if(k !== '상담유형') data[k]=v; });
   data['접수일시'] = new Date().toLocaleString('ko-KR');
+  data['브릿지론'] = document.getElementById('b1').checked ? '상담 희망' : '해당없음';
 
   try{
     if(SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL'){
