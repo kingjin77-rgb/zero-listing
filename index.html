@@ -376,13 +376,14 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:24px
           </div>
 
           <div class="f">
-            <label class="priv" style="margin:0 0 10px;">
+            <div class="chips">
               <input type="checkbox" name="브릿지론" id="b1" value="상담 희망">
-              <p style="font-size:13px;"><strong>브릿지론 상담을 희망합니다</strong></p>
-            </label>
-            <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--radius);padding:11px 14px;font-size:12.5px;color:#92400e;line-height:1.7;">
-              <b style="font-size:13px;">★ 매매 전속계약 체결 시 브릿지론 연계 가능</b>
+              <label for="b1">🏦 브릿지론 상담 희망</label>
             </div>
+          </div>
+
+          <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--radius);padding:11px 14px;font-size:12.5px;color:#92400e;line-height:1.7;margin-bottom:14px;">
+            <b style="font-size:13px;">★ 매매 전속계약 체결 시 브릿지론 연계 가능</b>
           </div>
 
 
@@ -494,8 +495,7 @@ function toggleChat(){
     : '💬<span class="chat-label">분양전환 AI 상담</span><div class="notif"></div>';
 }
 
-// ── Form submit ──
-const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxu4gyznAwdtk4zZ2SQcyviAFmEGNub4p7u0FsSYoSRcJyy7i_S0Yj2nO4FoOTXYo865g/exec';
 
 document.getElementById('mf').addEventListener('submit', async function(e){
   e.preventDefault();
@@ -514,11 +514,11 @@ document.getElementById('mf').addEventListener('submit', async function(e){
   data['브릿지론'] = document.getElementById('b1').checked ? '상담 희망' : '해당없음';
 
   try{
-    if(SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL'){
-      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    } else {
-      await new Promise(r=>setTimeout(r,1000));
-    }
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(data)
+    });
     document.getElementById('mf').style.display='none';
     document.getElementById('rt').textContent = `${data['성함']}님, 접수 완료!`;
     document.getElementById('rd').innerHTML =
