@@ -376,10 +376,11 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:24px
           </div>
 
           <div class="f">
-            <div class="chips">
-              <input type="checkbox" name="브릿지론" id="b1" value="상담 희망">
-              <label for="b1">🏦 브릿지론 상담 희망</label>
-            </div>
+            <label id="bridgeLabel" onclick="toggleBridge()" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;width:fit-content;font-size:12.5px;font-weight:500;color:var(--text2);background:var(--surface);transition:all .15s;user-select:none;">
+              <span id="bridgeBox" style="width:18px;height:18px;border:1.5px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;"></span>
+              🏦 브릿지론 상담 희망
+            </label>
+            <input type="hidden" id="b1" name="브릿지론" value="해당없음">
           </div>
 
           <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--radius);padding:11px 14px;font-size:12.5px;color:#92400e;line-height:1.7;margin-bottom:14px;">
@@ -483,6 +484,34 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding:24px
 </div>
 
 <script>
+// ── Bridge toggle ──
+let bridgeChecked = false;
+function toggleBridge(){
+  bridgeChecked = !bridgeChecked;
+  const box = document.getElementById('bridgeBox');
+  const lbl = document.getElementById('bridgeLabel');
+  const inp = document.getElementById('b1');
+  if(bridgeChecked){
+    box.innerHTML = '✓';
+    box.style.background = '#18181b';
+    box.style.borderColor = '#18181b';
+    box.style.color = '#fff';
+    lbl.style.borderColor = '#18181b';
+    lbl.style.background = '#18181b';
+    lbl.style.color = '#fff';
+    inp.value = '상담 희망';
+  } else {
+    box.innerHTML = '';
+    box.style.background = '';
+    box.style.borderColor = '';
+    box.style.color = '';
+    lbl.style.borderColor = '';
+    lbl.style.background = '';
+    lbl.style.color = '';
+    inp.value = '해당없음';
+  }
+}
+
 // ── Chatbot toggle ──
 let chatOpen = false;
 function toggleChat(){
@@ -511,12 +540,12 @@ document.getElementById('mf').addEventListener('submit', async function(e){
   data['상담유형'] = checkedTypes.join(', ') || '미선택';
   new FormData(this).forEach((v,k) => { if(k !== '상담유형') data[k]=v; });
   data['접수일시'] = new Date().toLocaleString('ko-KR');
-  data['브릿지론'] = document.getElementById('b1').checked ? '상담 희망' : '해당없음';
 
   try{
     await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data)
     });
     document.getElementById('mf').style.display='none';
